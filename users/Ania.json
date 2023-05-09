@@ -1,0 +1,12 @@
+{
+	"Name": "Ania",
+	"Age": 25,
+	"Contact": "788992",
+	"Company": "Myrl Tech",
+	"Address": {
+		"City": "Silchar",
+		"State": "Assam",
+		"Country": "India",
+		"PinCode": 788003
+	}
+}

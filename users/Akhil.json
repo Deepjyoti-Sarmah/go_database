@@ -1,0 +1,12 @@
+{
+	"Name": "Akhil",
+	"Age": 33,
+	"Contact": "238433",
+	"Company": "Akhil Tech",
+	"Address": {
+		"City": "Bengaloru",
+		"State": "Kernataka",
+		"Country": "India",
+		"PinCode": 410015
+	}
+}

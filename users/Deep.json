@@ -1,0 +1,12 @@
+{
+	"Name": "Deep",
+	"Age": 22,
+	"Contact": "843445",
+	"Company": "World Tech",
+	"Address": {
+		"City": "Guwahati",
+		"State": "Assam",
+		"Country": "India",
+		"PinCode": 781023
+	}
+}
