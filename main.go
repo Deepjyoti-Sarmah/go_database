@@ -143,7 +143,7 @@ func (d *Driver) ReadAll(collection string) ([]string, error) {
 }
 
 func (d *Driver) Delete() error {
-
+	
 }
 
 func (d *Driver) GetOrCreateMutex(collection string) *sync.Mutex {
