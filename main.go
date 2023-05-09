@@ -75,10 +75,10 @@ func (d *Driver) Write(collection, resource string, v interface{}) error {
 	defer mutex.Unlock()
 
 	dir := filepath.Join(d.dir, collection)
-	fnlePath := filepath.Join(dir, resource+"json")
+	fnlePath := filepath.Join(dir, resource+".json")
 	tmpPath := fnlePath + ".tmp"
 
-	if err := os.Mkdir(dir, 0755); err != nil {
+	if err := os.MkdirAll(dir, 0755); err != nil {
 		return err
 	}
 
@@ -142,8 +142,26 @@ func (d *Driver) ReadAll(collection string) ([]string, error) {
 	return records, nil
 }
 
-func (d *Driver) Delete() error {
-	
+func (d *Driver) Delete(collection, resource string) error {
+
+	path := filepath.Join(collection, resource)
+	mutex := d.GetOrCreateMutex(collection)
+	mutex.Lock()
+	defer mutex.Unlock()
+
+	dir := filepath.Join(d.dir, path)
+	switch fi, err := stat(dir); {
+	case fi == nil, err != nil:
+		return fmt.Errorf("Unable to find file or directory named %v\n", path)
+
+	case fi.Mode().IsDir():
+		return os.RemoveAll(dir)
+
+	case fi.Mode().IsRegular():
+		return os.RemoveAll(dir + ".json")
+	}
+
+	return nil
 }
 
 func (d *Driver) GetOrCreateMutex(collection string) *sync.Mutex {
